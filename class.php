@@ -211,36 +211,36 @@
         }
     }
 
-    $todoList = new todoList();
+    // $todoList = new todoList();
 
-    try {
-        $todoList->addItem('買菜', 0, 2);
+    // try {
+    //     $todoList->addItem('買菜', 0, 2);
         
-        $todoList->addItem('看書', 1, 0);
-        exit();
-        $todoList->addItem('寫扣', 2, 1);
-        $todoList->addItem('澆花', 1, 0);
+    //     $todoList->addItem('看書', 1, 0);
+    //     exit();
+    //     $todoList->addItem('寫扣', 2, 1);
+    //     $todoList->addItem('澆花', 1, 0);
 
-        // $todoList->updateItem('', '看書');
-        // $todoList->updateItem('看電視', '');
-        // $todoList->updateItem('', '');
-        // $todoList->updateItem('看電視', '書');
-        $todoList->updateItem('看電視', '看書');
+    //     // $todoList->updateItem('', '看書');
+    //     // $todoList->updateItem('看電視', '');
+    //     // $todoList->updateItem('', '');
+    //     // $todoList->updateItem('看電視', '書');
+    //     $todoList->updateItem('看電視', '看書');
 
-        // $todoList->delItem('');
-        // $todoList->delItem('菜');
-        $todoList->delItem('買菜');
+    //     // $todoList->delItem('');
+    //     // $todoList->delItem('菜');
+    //     $todoList->delItem('買菜');
 
-        $todoList->showList();
+    //     $todoList->showList();
 
-        // $todoList->updateItemStat(0, 2);
-        $todoList->updateItemStat(0, 1);
+    //     // $todoList->updateItemStat(0, 2);
+    //     $todoList->updateItemStat(0, 1);
 
-        // $todoList->updateItemPriority(0, 4);
-        $todoList->updateItemPriority(0, 2);
+    //     // $todoList->updateItemPriority(0, 4);
+    //     $todoList->updateItemPriority(0, 2);
 
-        // $todoList->updateItemClass(2, 4);
-        $todoList->updateItemClass(2, 2);
-    } catch (Exception $e) {
-        echo $e->getMessage();
-    }
+    //     // $todoList->updateItemClass(2, 4);
+    //     $todoList->updateItemClass(2, 2);
+    // } catch (Exception $e) {
+    //     echo $e->getMessage();
+    // }
