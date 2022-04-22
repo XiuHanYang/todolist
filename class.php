@@ -85,44 +85,29 @@ class TodoList
      */
     public function delItem($item)
     {
-        if (in_array($item, $this->items) && $item !== '') {
-            $key = array_search($item, $this->items);
+        if ($item == '') {
+            throw new Exception('刪除的item不得為空');
+        }
 
-            unset($this->items[$key]);
-            $this->items = array_values($this->items);
-
-            unset($this->itemsStat[$key]);
-            $this->itemsStat = array_values($this->itemsStat);
-
-            unset($this->itemsPriority[$key]);
-            $this->itemsPriority = array_values($this->itemsPriority);
-
-            unset($this->itemsClass[$key]);
-            $this->itemsClass = array_values($this->itemsClass);
-
-            // echo 'delResult: '.PHP_EOL;
-
-            // echo 'items: '.PHP_EOL;
-            // print_r($this->items);
-
-            // echo 'itemsStat: '.PHP_EOL;
-            // print_r($this->itemsStat);
-
-            // echo 'itemsPriority: '.PHP_EOL;
-            // print_r($this->itemsPriority);
-
-            // echo 'itemsClass: '.PHP_EOL;
-            // print_r($this->itemsClass);
-            return true;
-        } elseif ($item == '') {
-            // $this->errorMsg = '刪除的item不得為空'.PHP_EOL;
-            // throw new Exception($this->errorMsg);
-            return '刪除的item不得為空';
-        } else {
-            // $this->errorMsg = 'delResult: '.PHP_EOL.'找不到名為'.$item.'的待辦事項'.PHP_EOL;
-            // throw new Exception($this->errorMsg);
+        if (!in_array($item, $this->items)) {
             return '找不到名為' . $item . '的待辦事項';
         }
+ 
+        $key = array_search($item, $this->items);
+
+        unset($this->items[$key]);
+        $this->items = array_values($this->items);
+
+        unset($this->itemsStat[$key]);
+        $this->itemsStat = array_values($this->itemsStat);
+
+        unset($this->itemsPriority[$key]);
+        $this->itemsPriority = array_values($this->itemsPriority);
+
+        unset($this->itemsClass[$key]);
+        $this->itemsClass = array_values($this->itemsClass);
+        
+        return true;
     }
 
     /**

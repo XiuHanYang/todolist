@@ -152,17 +152,14 @@ class TodoTest extends TestCase {
      * @testdox 當項目清單有「買菜」「看電視」「寫扣」「澆花」項目時，刪除「」項目，應該會出現「刪除的item不得為空」的錯誤訊息
      */
     public function shouldShowEmptyItemWhenDelEmptyItem() {
-        // $this->expectException(Exception::class);
+        $this->expectException(Exception::class);
+
         $target = new TodoList();
         $target->addItem('買菜');
         $target->addItem('看書');
         $target->addItem('寫扣');
         $target->addItem('澆花');
-        $actual = $target->delItem('');
-        // $actual = $target->showList();
-
-        // $this->markTestIncomplete();
-        $this->assertSame('刪除的item不得為空', $actual);
+        $target->delItem('');
     }
 
     /**
