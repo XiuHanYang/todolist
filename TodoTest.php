@@ -204,12 +204,10 @@ class TodoTest extends TestCase {
      * @testdox 當項目清單有「買菜」項目時，新增一個清單項目「」，應該會出現「新增的item不得為空」的錯誤訊息
      */
     public function shouldShowAddEmptyItemWhenAddItem() {
+        $this->expectException(Exception::class);
+
         $target = new TodoList();
-        $actual = $target->addItem('');
-
-        // $actual = $target->showList();
-
-        $this->assertSame('新增的item不得為空', $actual);
+        $target->addItem('');
     }
 
     /**

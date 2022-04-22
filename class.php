@@ -4,7 +4,7 @@ namespace Hannah;
 
 use Exception;
 
-class TodoList extends Exception
+class TodoList
 {
     // 待辦清單事項
     public $items;
@@ -35,7 +35,7 @@ class TodoList extends Exception
     public function addItem($item, $priority = 0, $class = 0)
     {
         if ($item == '') {
-            return '新增的item不得為空';
+            throw new Exception('新增的item不得為空');
         }
 
         if ($priority > 3) {
