@@ -66,7 +66,7 @@ class TodoList
         }
 
         if ($oriItem === '') {
-            return '原item不得為空';
+            throw new Exception('原item不得為空');
         }
 
         if (!in_array($oriItem, $this->items)) {
