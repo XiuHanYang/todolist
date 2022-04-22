@@ -52,7 +52,8 @@
                 // if($item == '')     $this->errorMsg = '新增的item不得為空'.PHP_EOL;
                 if($priority > 3)   return '優先權錯誤';
                 // if($priority > 3)   $this->errorMsg = '優先權錯誤'.PHP_EOL;
-                if($class > 3)      $this->errorMsg = '類別錯誤'.PHP_EOL;
+                if($class > 3)      return '類別錯誤';
+                // if($class > 3)      $this->errorMsg = '類別錯誤'.PHP_EOL;
                 throw new Exception($this->errorMsg);
             }
         }

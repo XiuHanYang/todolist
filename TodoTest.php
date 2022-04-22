@@ -221,4 +221,17 @@ class TodoTest extends \PHPUnit\Framework\TestCase {
 
         $this->assertSame('優先權錯誤', $actual);
     }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「買菜」項目時，新增一個清單項目「寫扣」，優先權「中」，類別「不存在」，應該會出現「類別錯誤」的錯誤訊息
+     */
+    public function shouldShowAddErrorClassItemWhenAddItem() {
+        $target = new todoList();
+        $actual = $target->addItem('寫扣', 2, 4);
+
+        // $actual = $target->showList();
+
+        $this->assertSame('類別錯誤', $actual);
+    }
 }
