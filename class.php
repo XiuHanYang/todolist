@@ -84,8 +84,9 @@
                 // throw new Exception($this->errorMsg);
                 return '新item不得為空';
             } else if($oriItem == '') {
-                $this->errorMsg = '原item不得為空'.PHP_EOL;
-                throw new Exception($this->errorMsg);
+                // $this->errorMsg = '原item不得為空'.PHP_EOL;
+                // throw new Exception($this->errorMsg);
+                return '原item不得為空';
             } else {
                 $this->errorMsg = 'updateResult: '.PHP_EOL.'找不到名為'.$oriItem.'的待辦事項'.PHP_EOL;
                 throw new Exception($this->errorMsg);
