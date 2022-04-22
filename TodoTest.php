@@ -140,4 +140,23 @@ class TodoTest extends \PHPUnit\Framework\TestCase {
         // $this->markTestIncomplete();
         $this->assertSame('新item不得為空', $actual);
     }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「買菜」「看書」「寫扣」「澆花」項目時，將「書」更新為「看電視」，應該要有「找不到名為書的待辦事項」的錯誤訊息
+     */
+    public function shouldShowUpdateItemWhenUpdateErrorItem() {
+        // $this->expectException(Exception::class);
+        $target = new todoList();
+        $target->addItem('買菜');
+        $target->addItem('看書');
+        $target->addItem('寫扣');
+        $target->addItem('澆花');
+        $actual = $target->updateItem('看電視', '書');
+
+        // $actual = $target->showList();
+
+        // $this->markTestIncomplete();
+        $this->assertSame('找不到名為書的待辦事項', $actual);
+    }
 }
