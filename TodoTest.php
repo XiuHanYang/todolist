@@ -167,17 +167,14 @@ class TodoTest extends TestCase {
      * @testdox 當項目清單有「買菜」「看電視」「寫扣」「澆花」項目時，刪除「菜」項目，應該會出現「找不到名為菜的待辦事項」的錯誤訊息
      */
     public function shouldShowDelItemWhenDelErrorItem() {
-        // $this->expectException(Exception::class);
+        $this->expectException(Exception::class);
+
         $target = new TodoList();
         $target->addItem('買菜');
         $target->addItem('看書');
         $target->addItem('寫扣');
         $target->addItem('澆花');
-        $actual = $target->delItem('菜');
-        // $actual = $target->showList();
-
-        // $this->markTestIncomplete();
-        $this->assertSame('找不到名為菜的待辦事項', $actual);
+        $target->delItem('菜');
     }
 
     /**
