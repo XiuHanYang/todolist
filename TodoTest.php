@@ -64,4 +64,43 @@ class TodoTest extends \PHPUnit\Framework\TestCase {
 
         $this->assertSame(['看電視', '寫扣', '澆花'], $actual);
     }
+
+    /**
+     * @test
+     * @testdox 項目清單有「看電視」「寫扣」「澆花」項目時，更新「看電視」狀態「已完成」，「看電視」狀態應該會是「已完成」
+     */
+    // public function shouldShowItemStatWhenUpdateItemStat() {
+    //     $target = new todoList();
+    //     $target->addItem('買菜');
+    //     $target->addItem('看書');
+    //     $target->addItem('寫扣');
+    //     $target->addItem('澆花');
+    //     $target->updateItem('看電視', '看書');
+    //     $target->delItem('買菜');
+    //     $target->updateItemStat(0, 1);
+
+    //     $actual = $target->showList();
+
+    //     $this->assertSame(['看電視', '寫扣', '澆花'], $actual);
+    // }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「買菜」「看書」「寫扣」「澆花」項目時，將「」更新為「看書」，應該要有「新item不得為空」的錯誤訊息
+     */
+    public function shouldShowUpdateEmptyItemWhenUpdateItem() {
+        // $this->expectException(Exception::class);
+        $target = new todoList();
+        $target->addItem('買菜');
+        $target->addItem('看書');
+        $target->addItem('寫扣');
+        $target->addItem('澆花');
+        $actual = $target->updateItem('', '看書');
+
+        // $actual = $target->showList();
+
+        // $this->markTestIncomplete();
+        $this->assertSame('新item不得為空', $actual);
+    }
+    
 }

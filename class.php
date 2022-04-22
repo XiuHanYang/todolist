@@ -21,7 +21,7 @@
         }
 
         /**
-         * @params string $item 
+         * @params string $item
          * @params int $priority
          * @params int $class
          * @return true, others
@@ -55,6 +55,11 @@
             }
         }
 
+        /**
+         * @params string $newItem
+         * @params string $oriItem
+         * @return true, others
+         */
         public function updateItem($newItem, $oriItem) {
             if(in_array($oriItem, $this->items) && $newItem !== '' && $oriItem !== '') {
                 $key = array_search($oriItem, $this->items);
@@ -75,8 +80,9 @@
                 // print_r($this->itemsClass);
                 return true;
             } else if($newItem == '') {
-                $this->errorMsg = '新item不得為空'.PHP_EOL;
-                throw new Exception($this->errorMsg);
+                // $this->errorMsg = '新item不得為空'.PHP_EOL;
+                // throw new Exception($this->errorMsg);
+                return '新item不得為空';
             } else if($oriItem == '') {
                 $this->errorMsg = '原item不得為空'.PHP_EOL;
                 throw new Exception($this->errorMsg);
@@ -86,6 +92,10 @@
             }
         }
 
+        /**
+         * @params string $item
+         * @return true, others
+         */
         public function delItem($item) {
             if(in_array($item, $this->items) && $item !== '') {
                 $key = array_search($item, $this->items);
@@ -125,6 +135,9 @@
             }
         }
 
+        /**
+         * @return items
+         */
         public function showList(){
             return $this->items;
 
@@ -143,6 +156,11 @@
             // print_r($this->itemsClass);
         }
 
+        /**
+         * @params int $key
+         * @params int $stat
+         * @return true, others
+         */
         public function updateItemStat($key, $stat = 0){
             if(array_key_exists($key, $this->items) && $stat <= 1) {
                 $this->itemsStat[$key] = $stat;
@@ -169,6 +187,11 @@
             }
         }
 
+        /**
+         * @params int $key
+         * @params int $priority
+         * @return true, others
+         */
         public function updateItemPriority($key, $priority = 0){
             if(array_key_exists($key, $this->items) && $priority <= 3) {
                 $this->itemsPriority[$key] = $priority;
@@ -195,6 +218,11 @@
             }
         }
 
+        /**
+         * @params int $key
+         * @params int $class
+         * @return true, others
+         */
         public function updateItemClass($key, $class = 0){
             if(array_key_exists($key, $this->items) && $class <= 3) {
                 $this->itemsClass[$key] = $class;
@@ -226,7 +254,7 @@
 
     // try {
     //     $todoList->addItem('買菜', 0, 2);
-        
+
     //     $todoList->addItem('看書', 1, 0);
     //     exit();
     //     $todoList->addItem('寫扣', 2, 1);

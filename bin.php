@@ -288,7 +288,7 @@ $app->addCommands([
         protected function configure()
         {
             $this->setName('testcase15');
-            $this->setDescription('當項目清單有「看電視」「寫扣」「澆花」項目時，更新「看電視」狀態「2」，應該會出現「狀態錯誤」的錯誤訊息');
+            $this->setDescription('當項目清單有「看電視」「寫扣」「澆花」項目時，更新「看電視」狀態「未定義」，應該會出現「狀態錯誤」的錯誤訊息');
         }
 
         protected function execute(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output)
@@ -334,7 +334,7 @@ $app->addCommands([
         protected function configure()
         {
             $this->setName('testcase17');
-            $this->setDescription('當項目清單有「看電視」「寫扣」「澆花」項目時，更新「看電視」優先權「4」，應該會出現「優先權錯誤」的錯誤訊息');
+            $this->setDescription('當項目清單有「看電視」「寫扣」「澆花」項目時，更新「看電視」優先權「未定義」，應該會出現「優先權錯誤」的錯誤訊息');
         }
 
         protected function execute(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output)
@@ -380,7 +380,7 @@ $app->addCommands([
         protected function configure()
         {
             $this->setName('testcase19');
-            $this->setDescription('當項目清單有「看電視」「寫扣」「澆花」項目時，更新「澆花」類別「4」，應該會出現「類別錯誤」的錯誤訊息');
+            $this->setDescription('當項目清單有「看電視」「寫扣」「澆花」項目時，更新「澆花」類別「不存在」，應該會出現「類別錯誤」的錯誤訊息');
         }
 
         protected function execute(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output)
@@ -395,7 +395,7 @@ $app->addCommands([
             $todoList->delItem('買菜');
             $todoList->showList();
             $todoList->updateItemClass(2, 4);
-            
+
             return 0;
         }
     },
