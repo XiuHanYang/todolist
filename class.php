@@ -39,7 +39,7 @@ class TodoList
         }
 
         if ($priority > 3) {
-            return '優先權錯誤';
+            throw new Exception('優先權錯誤');
         }
 
         if ($class > 3) {
