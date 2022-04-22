@@ -43,7 +43,7 @@ class TodoList
         }
 
         if ($class > 3) {
-            return '類別錯誤';
+            throw new Exception('類別錯誤');
         }
 
         $this->items[] = $item;
