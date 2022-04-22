@@ -195,4 +195,17 @@ class TodoTest extends \PHPUnit\Framework\TestCase {
         // $this->markTestIncomplete();
         $this->assertSame('找不到名為菜的待辦事項', $actual);
     }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「買菜」項目時，新增一個清單項目「」，應該會出現「新增的item不得為空」的錯誤訊息
+     */
+    public function shouldShowAddEmptyItemWhenAddItem() {
+        $target = new todoList();
+        $actual = $target->addItem('');
+
+        // $actual = $target->showList();
+
+        $this->assertSame('新增的item不得為空', $actual);
+    }
 }
