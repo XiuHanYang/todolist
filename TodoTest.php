@@ -29,4 +29,21 @@ class TodoTest extends \PHPUnit\Framework\TestCase {
 
         $this->assertSame(['看書'], $actual);
     }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「買菜」「看書」「寫扣」「澆花」項目時，將「看書」更新為「看電視」，項目清單應該要有「買菜」「看電視」「寫扣」「澆花」四個項目
+     */
+    public function shouldShowUpdateItemWhenUpdateItem() {
+        $target = new todoList();
+        $target->addItem('買菜');
+        $target->addItem('看書');
+        $target->addItem('寫扣');
+        $target->addItem('澆花');
+        $target->updateItem('看電視', '看書');
+
+        $actual = $target->showList();
+
+        $this->assertSame(['買菜', '看電視', '寫扣', '澆花'], $actual);
+    }
 }

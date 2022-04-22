@@ -60,19 +60,20 @@
                 $key = array_search($oriItem, $this->items);
                 $this->items[$key] = $newItem;
 
-                echo 'updateResult: '.PHP_EOL;
+                // echo 'updateResult: '.PHP_EOL;
 
-                echo 'items: '.PHP_EOL;
-                print_r($this->items);
+                // echo 'items: '.PHP_EOL;
+                // print_r($this->items);
 
-                echo 'itemsStat: '.PHP_EOL;
-                print_r($this->itemsStat);
+                // echo 'itemsStat: '.PHP_EOL;
+                // print_r($this->itemsStat);
 
-                echo 'itemsPriority: '.PHP_EOL;
-                print_r($this->itemsPriority);
+                // echo 'itemsPriority: '.PHP_EOL;
+                // print_r($this->itemsPriority);
 
-                echo 'itemsClass: '.PHP_EOL;
-                print_r($this->itemsClass);
+                // echo 'itemsClass: '.PHP_EOL;
+                // print_r($this->itemsClass);
+                return true;
             } else if($newItem == '') {
                 $this->errorMsg = '新item不得為空'.PHP_EOL;
                 throw new Exception($this->errorMsg);
