@@ -70,7 +70,7 @@ class TodoList
         }
 
         if (!in_array($oriItem, $this->items)) {
-            return '找不到名為' . $oriItem . '的待辦事項';
+            throw new Exception('找不到名為' . $oriItem . '的待辦事項');
         }
 
         $key = array_search($oriItem, $this->items);
