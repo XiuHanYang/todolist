@@ -20,6 +20,12 @@
             $this->errorMsg = '';
         }
 
+        /**
+         * @params string $item 
+         * @params int $priority
+         * @params int $class
+         * @return true, others
+         */
         public function addItem($item, $priority = 0, $class = 0) {
             if($item !== '' && $priority <= 3 && $class <=3) {
                 $this->items[] = $item;
@@ -27,19 +33,20 @@
                 $this->itemsPriority[] = $priority;
                 $this->itemsClass[] = $class;
 
-                echo 'addResult: '.PHP_EOL;
+                // echo 'addResult: '.PHP_EOL;
 
-                echo 'items: '.PHP_EOL;
-                print_r($this->items);
+                // echo 'items: '.PHP_EOL;
+                // print_r($this->items);
 
-                echo 'itemsStat: '.PHP_EOL;
-                print_r($this->itemsStat);
+                // echo 'itemsStat: '.PHP_EOL;
+                // print_r($this->itemsStat);
 
-                echo 'itemsPriority: '.PHP_EOL;
-                print_r($this->itemsPriority);
+                // echo 'itemsPriority: '.PHP_EOL;
+                // print_r($this->itemsPriority);
 
-                echo 'itemsClass: '.PHP_EOL;
-                print_r($this->itemsClass);
+                // echo 'itemsClass: '.PHP_EOL;
+                // print_r($this->itemsClass);
+                return true;
             } else {
                 if($item == '')     $this->errorMsg = '新增的item不得為空'.PHP_EOL;
                 if($priority > 3)   $this->errorMsg = '優先權錯誤'.PHP_EOL;
@@ -117,19 +124,21 @@
         }
 
         public function showList(){
-            echo 'showListResult: '.PHP_EOL;
+            return $this->items;
 
-            echo 'items: '.PHP_EOL;
-            print_r($this->items);
+            // echo 'showListResult: '.PHP_EOL;
 
-            echo 'itemsStat: '.PHP_EOL;
-            print_r($this->itemsStat);
+            // echo 'items: '.PHP_EOL;
+            // print_r($this->items);
 
-            echo 'itemsPriority: '.PHP_EOL;
-            print_r($this->itemsPriority);
+            // echo 'itemsStat: '.PHP_EOL;
+            // print_r($this->itemsStat);
 
-            echo 'itemsClass: '.PHP_EOL;
-            print_r($this->itemsClass);
+            // echo 'itemsPriority: '.PHP_EOL;
+            // print_r($this->itemsPriority);
+
+            // echo 'itemsClass: '.PHP_EOL;
+            // print_r($this->itemsClass);
         }
 
         public function updateItemStat($key, $stat = 0){
