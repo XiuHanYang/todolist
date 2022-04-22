@@ -133,8 +133,9 @@
                 // throw new Exception($this->errorMsg);
                 return '刪除的item不得為空';
             } else {
-                $this->errorMsg = 'delResult: '.PHP_EOL.'找不到名為'.$item.'的待辦事項'.PHP_EOL;
-                throw new Exception($this->errorMsg);
+                // $this->errorMsg = 'delResult: '.PHP_EOL.'找不到名為'.$item.'的待辦事項'.PHP_EOL;
+                // throw new Exception($this->errorMsg);
+                return '找不到名為'.$item.'的待辦事項';
             }
         }
 
