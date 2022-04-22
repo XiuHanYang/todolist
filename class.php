@@ -34,7 +34,7 @@ class TodoList
      */
     public function addItem($item, $priority = 0, $class = 0)
     {
-        if ($item == '') {
+        if ($item === '') {
             throw new Exception('新增的item不得為空');
         }
 
@@ -61,37 +61,22 @@ class TodoList
      */
     public function updateItem($newItem, $oriItem)
     {
-        if (in_array($oriItem, $this->items) && $newItem !== '' && $oriItem !== '') {
-            $key = array_search($oriItem, $this->items);
-            $this->items[$key] = $newItem;
+        if ($newItem === '') {
+            throw new Exception('新item不得為空');
+        }
 
-            // echo 'updateResult: '.PHP_EOL;
-
-            // echo 'items: '.PHP_EOL;
-            // print_r($this->items);
-
-            // echo 'itemsStat: '.PHP_EOL;
-            // print_r($this->itemsStat);
-
-            // echo 'itemsPriority: '.PHP_EOL;
-            // print_r($this->itemsPriority);
-
-            // echo 'itemsClass: '.PHP_EOL;
-            // print_r($this->itemsClass);
-            return true;
-        } elseif ($newItem == '') {
-            // $this->errorMsg = '新item不得為空'.PHP_EOL;
-            // throw new Exception($this->errorMsg);
-            return '新item不得為空';
-        } elseif ($oriItem == '') {
-            // $this->errorMsg = '原item不得為空'.PHP_EOL;
-            // throw new Exception($this->errorMsg);
+        if ($oriItem === '') {
             return '原item不得為空';
-        } else {
-            // $this->errorMsg = 'updateResult: '.PHP_EOL.'找不到名為'.$oriItem.'的待辦事項'.PHP_EOL;
-            // throw new Exception($this->errorMsg);
+        }
+
+        if (!in_array($oriItem, $this->items)) {
             return '找不到名為' . $oriItem . '的待辦事項';
         }
+
+        $key = array_search($oriItem, $this->items);
+        $this->items[$key] = $newItem;
+
+        return true;
     }
 
     /**
