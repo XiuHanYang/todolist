@@ -34,41 +34,24 @@ class TodoList extends Exception
      */
     public function addItem($item, $priority = 0, $class = 0)
     {
-        if ($item !== '' && $priority <= 3 && $class <= 3) {
-            $this->items[] = $item;
-            $this->itemsStat[] = 0;
-            $this->itemsPriority[] = $priority;
-            $this->itemsClass[] = $class;
-
-            // echo 'addResult: '.PHP_EOL;
-
-            // echo 'items: '.PHP_EOL;
-            // print_r($this->items);
-
-            // echo 'itemsStat: '.PHP_EOL;
-            // print_r($this->itemsStat);
-
-            // echo 'itemsPriority: '.PHP_EOL;
-            // print_r($this->itemsPriority);
-
-            // echo 'itemsClass: '.PHP_EOL;
-            // print_r($this->itemsClass);
-            return true;
-        } else {
-            if ($item == '') {
-                return '新增的item不得為空';
-            }
-            // if($item == '')     $this->errorMsg = '新增的item不得為空'.PHP_EOL;
-            if ($priority > 3) {
-                return '優先權錯誤';
-            }
-            // if($priority > 3)   $this->errorMsg = '優先權錯誤'.PHP_EOL;
-            if ($class > 3) {
-                return '類別錯誤';
-            }
-            // if($class > 3)      $this->errorMsg = '類別錯誤'.PHP_EOL;
-            // throw new Exception($this->errorMsg);
+        if ($item == '') {
+            return '新增的item不得為空';
         }
+
+        if ($priority > 3) {
+            return '優先權錯誤';
+        }
+
+        if ($class > 3) {
+            return '類別錯誤';
+        }
+
+        $this->items[] = $item;
+        $this->itemsStat[] = 0;
+        $this->itemsPriority[] = $priority;
+        $this->itemsClass[] = $class;
+
+        return true;
     }
 
     /**
