@@ -46,4 +46,22 @@ class TodoTest extends \PHPUnit\Framework\TestCase {
 
         $this->assertSame(['買菜', '看電視', '寫扣', '澆花'], $actual);
     }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「買菜」「看電視」「寫扣」「澆花」項目時，刪除「買菜」項目，項目清單應該只會出現「看電視」「寫扣」「澆花」三個項目
+     */
+    public function shouldShowThreeItemWhenDelItem() {
+        $target = new todoList();
+        $target->addItem('買菜');
+        $target->addItem('看書');
+        $target->addItem('寫扣');
+        $target->addItem('澆花');
+        $target->updateItem('看電視', '看書');
+        $target->delItem('買菜');
+
+        $actual = $target->showList();
+
+        $this->assertSame(['看電視', '寫扣', '澆花'], $actual);
+    }
 }
