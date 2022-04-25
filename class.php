@@ -3,6 +3,28 @@
 namespace Hannah;
 
 use Exception;
+
+class TodoItem
+{
+    // 待辦清單事項
+    public $name;
+    // // 待辦清單事項狀態（0：未完成，1：已完成）
+    // public $status;
+    // // 待辦清單事項優先權（0：無，1：低，2：中，3：高）
+    // public $priority;
+    // // 待辦清單事項類別（0：無，1：私人，2：工作，3：家庭）
+    // public $class;
+
+    public function __construct($name/*, $status, $priority, $class*/)
+    {
+        $this->name = $name;
+        // $this->status = $status;
+        // $this->priority = $priority;
+        // $this->class = $class;
+    }
+
+}
+
 class TodoList
 {
     // 待辦清單事項
@@ -13,8 +35,6 @@ class TodoList
     public $itemsPriority;
     // 待辦清單事項類別（0：無，1：私人，2：工作，3：家庭）
     public $itemsClass;
-    // 錯誤訊息
-    public $errorMsg;
 
     public function __construct()
     {
@@ -22,7 +42,6 @@ class TodoList
         $this->itemsStat = array();
         $this->itemsPriority = array();
         $this->itemsClass = array();
-        $this->errorMsg = '';
     }
 
     /**
@@ -115,6 +134,15 @@ class TodoList
     public function showList()
     {
         return $this->items;
+    }
+
+    /**
+     * @param object $item
+     * return object
+     */
+    public function getItem($key) {
+
+        return $this->items[$key];
     }
 
     /**

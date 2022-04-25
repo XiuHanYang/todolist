@@ -2,6 +2,7 @@
 
 require_once 'class.php';
 
+use Hannah\TodoItem;
 use Hannah\TodoList;
 use PHPUnit\Framework\TestCase;
 
@@ -14,12 +15,14 @@ class TodoTest extends TestCase
      */
     public function shouldShowOneItemWhenAddItemIntoEmptyList()
     {
+        $expectedItem = new TodoItem('買菜');
+
         $target = new TodoList();
-        $target->addItem('買菜');
+        $target->addItem($expectedItem);
 
-        $actual = $target->showList();
+        $actual = $target->getItem(0);
 
-        $this->assertSame(['買菜'], $actual);
+        $this->assertSame($expectedItem->name, $actual->name);
     }
 
     /**
