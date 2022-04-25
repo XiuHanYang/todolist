@@ -42,7 +42,7 @@ class TodoList
         }
 
         if ($class > 3) {
-            throw new Exception('類別錯誤');
+            throw new \RangeException('類別錯誤');
         }
 
         $this->items[] = $item;
