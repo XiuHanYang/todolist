@@ -89,7 +89,7 @@ class TodoList
         }
 
         if (!in_array($item, $this->items)) {
-            throw new Exception('找不到名為' . $item . '的待辦事項');
+            throw new \OutOfBoundsException('找不到名為' . $item . '的待辦事項');
         }
 
         $key = array_search($item, $this->items);
