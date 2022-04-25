@@ -31,12 +31,14 @@ class TodoTest extends TestCase
      */
     public function shouldShowTwoItemWhenAddItemIntoList()
     {
+        $expectedItem = new TodoItem('看書');
+
         $target = new TodoList();
-        $target->addItem('看書');
+        $target->addItem($expectedItem);
 
-        $actual = $target->showList();
+        $actual = $target->getItem(0);
 
-        $this->assertSame(['看書'], $actual);
+        $this->assertSame($expectedItem->name, $actual->name);
     }
 
     /**
