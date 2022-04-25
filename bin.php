@@ -193,7 +193,7 @@ $app->addCommands([
             $todoList->addItem('澆花', 1, 0);
             $todoList->updateItem('看電視', '看書');
             $todoList->delItem('買菜');
-            
+
             return 0;
         }
     },
@@ -207,7 +207,7 @@ $app->addCommands([
         protected function execute(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output)
         {
             $todoList = new todoList();
-            
+
             $todoList->addItem('買菜', 0, 2);
             $todoList->addItem('看書', 1, 0);
             $todoList->addItem('寫扣', 2, 1);
@@ -228,7 +228,7 @@ $app->addCommands([
         protected function execute(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output)
         {
             $todoList = new todoList();
-            
+
             $todoList->addItem('買菜', 0, 2);
             $todoList->addItem('看書', 1, 0);
             $todoList->addItem('寫扣', 2, 1);
@@ -349,7 +349,7 @@ $app->addCommands([
             $todoList->delItem('買菜');
             $todoList->showList();
             $todoList->updateItemPriority(0, 4);
-            
+
             return 0;
         }
     },

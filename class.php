@@ -3,7 +3,6 @@
 namespace Hannah;
 
 use Exception;
-
 class TodoList
 {
     // 待辦清單事項
@@ -39,7 +38,7 @@ class TodoList
         }
 
         if ($priority > 3) {
-            throw new Exception('優先權錯誤');
+            throw new \RangeException('優先權錯誤');
         }
 
         if ($class > 3) {
@@ -92,7 +91,7 @@ class TodoList
         if (!in_array($item, $this->items)) {
             throw new Exception('找不到名為' . $item . '的待辦事項');
         }
- 
+
         $key = array_search($item, $this->items);
 
         unset($this->items[$key]);
@@ -106,7 +105,7 @@ class TodoList
 
         unset($this->itemsClass[$key]);
         $this->itemsClass = array_values($this->itemsClass);
-        
+
         return true;
     }
 
@@ -116,20 +115,6 @@ class TodoList
     public function showList()
     {
         return $this->items;
-
-        // echo 'showListResult: '.PHP_EOL;
-
-        // echo 'items: '.PHP_EOL;
-        // print_r($this->items);
-
-        // echo 'itemsStat: '.PHP_EOL;
-        // print_r($this->itemsStat);
-
-        // echo 'itemsPriority: '.PHP_EOL;
-        // print_r($this->itemsPriority);
-
-        // echo 'itemsClass: '.PHP_EOL;
-        // print_r($this->itemsClass);
     }
 
     /**
@@ -139,29 +124,14 @@ class TodoList
      */
     public function updateItemStat($key, $stat = 0)
     {
-        if (array_key_exists($key, $this->items) && $stat <= 1) {
-            $this->itemsStat[$key] = $stat;
-
-            echo 'updateStatResult: ' . PHP_EOL;
-
-            echo 'items: ' . PHP_EOL;
-            print_r($this->items);
-
-            echo 'itemsStat: ' . PHP_EOL;
-            print_r($this->itemsStat);
-
-            echo 'itemsPriority: ' . PHP_EOL;
-            print_r($this->itemsPriority);
-
-            echo 'itemsClass: ' . PHP_EOL;
-            print_r($this->itemsClass);
-        } elseif ($stat > 1) {
-            $this->errorMsg = '狀態錯誤' . PHP_EOL;
-            throw new Exception($this->errorMsg);
-        } else {
-            $this->errorMsg = 'updateStatResult: ' . PHP_EOL . '找不到key為' . $key . '的待辦事項' . PHP_EOL;
-            throw new Exception($this->errorMsg);
+        if ($stat > 1) {
+            throw new Exception('狀態錯誤');
         }
+
+        if (!array_key_exists($key, $this->items)) {
+            throw new Exception('找不到key為' . $key . '的待辦事項');
+        }
+        $this->itemsStat[$key] = $stat;
     }
 
     /**
@@ -171,29 +141,15 @@ class TodoList
      */
     public function updateItemPriority($key, $priority = 0)
     {
-        if (array_key_exists($key, $this->items) && $priority <= 3) {
-            $this->itemsPriority[$key] = $priority;
-
-            echo 'updatePriorityResult: ' . PHP_EOL;
-
-            echo 'items: ' . PHP_EOL;
-            print_r($this->items);
-
-            echo 'itemsStat: ' . PHP_EOL;
-            print_r($this->itemsStat);
-
-            echo 'itemsPriority: ' . PHP_EOL;
-            print_r($this->itemsPriority);
-
-            echo 'itemsClass: ' . PHP_EOL;
-            print_r($this->itemsClass);
-        } elseif ($priority > 3) {
-            $this->errorMsg = '優先權錯誤' . PHP_EOL;
-            throw new Exception($this->errorMsg);
-        } else {
-            $this->errorMsg = 'updatePriorityResult: ' . PHP_EOL . '找不到key為' . $key . '的待辦事項' . PHP_EOL;
-            throw new Exception($this->errorMsg);
+        if ($priority > 3) {
+            throw new Exception('優先權錯誤');
         }
+
+        if (!array_key_exists($key, $this->items)) {
+            throw new Exception('找不到key為' . $key . '的待辦事項');
+        }
+
+        $this->itemsPriority[$key] = $priority;
     }
 
     /**
@@ -203,62 +159,14 @@ class TodoList
      */
     public function updateItemClass($key, $class = 0)
     {
-        if (array_key_exists($key, $this->items) && $class <= 3) {
-            $this->itemsClass[$key] = $class;
-
-            echo 'updateClassResult: ' . PHP_EOL;
-
-            echo 'items: ' . PHP_EOL;
-            print_r($this->items);
-
-            echo 'itemsStat: ' . PHP_EOL;
-            print_r($this->itemsStat);
-
-            echo 'itemsPriority: ' . PHP_EOL;
-            print_r($this->itemsPriority);
-
-            echo 'itemsClass: ' . PHP_EOL;
-            print_r($this->itemsClass);
-        } elseif ($class > 3) {
-            $this->errorMsg = '類別錯誤' . PHP_EOL;
-            throw new Exception($this->errorMsg);
-        } else {
-            $this->errorMsg = 'updateClassResult: ' . PHP_EOL . '找不到key為' . $key . '的待辦事項' . PHP_EOL;
-            throw new Exception($this->errorMsg);
+        if ($class > 3) {
+            throw new Exception('類別錯誤');
         }
+
+        if (!array_key_exists($key, $this->items)) {
+            throw new Exception('找不到key為' . $key . '的待辦事項');
+        }
+
+        $this->itemsClass[$key] = $class;
     }
 }
-
-    // $todoList = new todoList();
-
-    // try {
-    //     $todoList->addItem('買菜', 0, 2);
-
-    //     $todoList->addItem('看書', 1, 0);
-    //     exit();
-    //     $todoList->addItem('寫扣', 2, 1);
-    //     $todoList->addItem('澆花', 1, 0);
-
-    //     // $todoList->updateItem('', '看書');
-    //     // $todoList->updateItem('看電視', '');
-    //     // $todoList->updateItem('', '');
-    //     // $todoList->updateItem('看電視', '書');
-    //     $todoList->updateItem('看電視', '看書');
-
-    //     // $todoList->delItem('');
-    //     // $todoList->delItem('菜');
-    //     $todoList->delItem('買菜');
-
-    //     $todoList->showList();
-
-    //     // $todoList->updateItemStat(0, 2);
-    //     $todoList->updateItemStat(0, 1);
-
-    //     // $todoList->updateItemPriority(0, 4);
-    //     $todoList->updateItemPriority(0, 2);
-
-    //     // $todoList->updateItemClass(2, 4);
-    //     $todoList->updateItemClass(2, 2);
-    // } catch (Exception $e) {
-    //     echo $e->getMessage();
-    // }
