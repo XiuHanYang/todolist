@@ -15,7 +15,7 @@ class TodoTest extends TestCase
      */
     public function shouldShowOneItemWhenAddItemIntoEmptyList()
     {
-        $expectedItem = new TodoItem('買菜');
+        $expectedItem = new TodoItem(['買菜']);
 
         $target = new TodoList();
         $target->addItem($expectedItem);
@@ -31,7 +31,7 @@ class TodoTest extends TestCase
      */
     public function shouldShowTwoItemWhenAddItemIntoList()
     {
-        $expectedItem = new TodoItem('看書');
+        $expectedItem = new TodoItem(['買菜', '看書']);
 
         $target = new TodoList();
         $target->addItem($expectedItem);
@@ -47,16 +47,16 @@ class TodoTest extends TestCase
      */
     public function shouldShowUpdateItemWhenUpdateItem()
     {
+        $oriItem = new TodoItem(['買菜', '看書', '寫扣', '澆花']);
+        $expectedItem = new TodoItem(['買菜', '看電視', '寫扣', '澆花']);
+
         $target = new TodoList();
-        $target->addItem('買菜');
-        $target->addItem('看書');
-        $target->addItem('寫扣');
-        $target->addItem('澆花');
-        $target->updateItem('看電視', '看書');
+        $target->addItem($oriItem);
+        $target->updateItem('看電視', $target->getItemByKey(1));
 
-        $actual = $target->showList();
+        $actual = $target->getItemList();
 
-        $this->assertSame(['買菜', '看電視', '寫扣', '澆花'], $actual);
+        $this->assertSame($expectedItem->name, $actual->name);
     }
 
     /**

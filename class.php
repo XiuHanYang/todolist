@@ -50,7 +50,7 @@ class TodoList
      * @params int $class
      * @return true, others
      */
-    public function addItem($item, $priority = 0, $class = 0)
+    public function addItem(TodoItem $item, $priority = 0, $class = 0)
     {
         if ($item === '') {
             throw new Exception('新增的item不得為空');
@@ -87,12 +87,12 @@ class TodoList
             throw new Exception('原item不得為空');
         }
 
-        if (!in_array($oriItem, $this->items)) {
+        if (!in_array($oriItem, $this->items[0]->name)) {
             throw new \OutOfBoundsException('找不到名為' . $oriItem . '的待辦事項');
         }
 
-        $key = array_search($oriItem, $this->items);
-        $this->items[$key] = $newItem;
+        $key = array_search($oriItem, $this->items[0]->name);
+        $this->items[0]->name[$key] = $newItem;
 
         return true;
     }
@@ -137,12 +137,30 @@ class TodoList
     }
 
     /**
-     * @param object $item
-     * return object
+     * @param
+     * return
      */
     public function getItem($key) {
 
         return $this->items[$key];
+    }
+
+    /**
+     * @param
+     * return
+     */
+    public function getItemByKey($key) {
+
+        return $this->items[0]->name[$key];
+    }
+
+    /**
+     * @param
+     * return
+     */
+    public function getItemList() {
+
+        return $this->items[0];
     }
 
     /**
