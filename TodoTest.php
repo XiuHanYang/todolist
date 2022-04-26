@@ -131,15 +131,14 @@ class TodoTest extends TestCase
      * @test
      * @testdox 當項目清單有「買菜」「看書」「寫扣」「澆花」項目時，將「」更新為「」，應該要有「新item不得為空」的錯誤訊息
      */
-    public function shouldShowEmptyItemWhenUpdateEmptytem()
+    public function shouldShowEmptyItemWhenUpdateEmptyItem()
     {
         $this->expectException(Exception::class);
 
+        $oriItem = new TodoItem(['買菜', '看書', '寫扣', '澆花']);
+
         $target = new TodoList();
-        $target->addItem('買菜');
-        $target->addItem('看書');
-        $target->addItem('寫扣');
-        $target->addItem('澆花');
+        $target->addItem($oriItem);
         $target->updateItem('', '');
     }
 
