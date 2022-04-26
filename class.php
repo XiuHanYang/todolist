@@ -52,6 +52,12 @@ class TodoList
             throw new \RangeException('類別錯誤');
         }
 
+        foreach ($this->items as $items) {
+            if ($items->name === $item->name) {
+                throw new Exception('新增的item不得重複');
+            }
+        }
+
         $this->items[] = $item;
 
         return true;
@@ -59,22 +65,23 @@ class TodoList
 
     /**
      * @params string $newItem
-     * @params string $oriItem
      * @params int $key
      * @return true, others
      */
-    public function updateItem(string $newItem, string $oriItem, int $key)
+    public function updateItem(string $newItem, int $key)
     {
         if ($newItem === '') {
             throw new Exception('新item不得為空');
         }
 
-        if ($oriItem === '') {
-            throw new Exception('原item不得為空');
+        if (!array_key_exists($key, $this->items)) {
+            throw new \OutOfBoundsException('找不到 key 為' . $key . '的待辦事項');
         }
 
-        if ($oriItem !== $this->items[$key]->name) {
-            throw new \OutOfBoundsException('找不到名為' . $oriItem . '的待辦事項');
+        foreach ($this->items as $items) {
+            if ($items->name === $newItem) {
+                throw new Exception('更新的item不得重複');
+            }
         }
 
         $this->items[$key]->name = $newItem;
