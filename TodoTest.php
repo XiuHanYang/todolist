@@ -150,11 +150,10 @@ class TodoTest extends TestCase
     {
         $this->expectException(Exception::class);
 
+        $oriItem = new TodoItem(['買菜', '看書', '寫扣', '澆花']);
+
         $target = new TodoList();
-        $target->addItem('買菜');
-        $target->addItem('看書');
-        $target->addItem('寫扣');
-        $target->addItem('澆花');
+        $target->addItem($oriItem);
         $target->updateItem('看電視', '書');
     }
 
