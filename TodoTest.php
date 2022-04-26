@@ -86,11 +86,9 @@ class TodoTest extends TestCase
         $target->addItem($oriItem[0]);
         $target->addItem($oriItem[1]);
 
-        $updateItem = $target->getItem(1);
         $target->updateItem('看電視', 1);
 
-        $delItem = $target->getItem(0);
-        $target->delItem($delItem->name, 0);
+        $target->delItem(0);
 
         $actual = $target->showList();
 
@@ -111,13 +109,12 @@ class TodoTest extends TestCase
         $target = new TodoList();
         $target->addItem($oriItem[0]);
 
-        $updateItem = $target->getItem(0);
         $target->updateItem('', 0);
     }
 
     /**
      * @test
-     * @testdox 當項目清單有「看書」項目時，將 key 「1」更新為「看電視」，應該要有「找不到 key 為 不存在的值 的待辦事項」的錯誤訊息
+     * @testdox 當項目清單有「看書」項目時，將「不存在的 key 」更新為「看電視」，應該要有「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
      */
     public function shouldShowUpdateItemWhenUpdateErrorItem()
     {
@@ -133,23 +130,7 @@ class TodoTest extends TestCase
 
     /**
      * @test
-     * @testdox 當項目清單有「看書」項目時，刪除「」項目，應該會出現「刪除的item不得為空」的錯誤訊息
-     */
-    public function shouldShowEmptyItemWhenDelEmptyItem()
-    {
-        $this->expectException(Exception::class);
-
-        $oriItem = array();
-        $oriItem[] = new TodoItem('看書', 0, 1, 0);
-
-        $target = new TodoList();
-        $target->addItem($oriItem[0]);
-        $target->delItem('', 0);
-    }
-
-    /**
-     * @test
-     * @testdox 當項目清單有「看書」項目時，刪除「菜」項目，應該會出現「找不到名為菜的待辦事項」的錯誤訊息
+     * @testdox 當項目清單有「看書」項目時，刪除「不存在的 key 」項目，應該會出現「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
      */
     public function shouldShowDelItemWhenDelErrorItem()
     {
@@ -160,7 +141,7 @@ class TodoTest extends TestCase
 
         $target = new TodoList();
         $target->addItem($oriItem[0]);
-        $target->delItem('菜', 0);
+        $target->delItem(1);
     }
 
     /**

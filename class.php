@@ -90,18 +90,13 @@ class TodoList
     }
 
     /**
-     * @params string $item
      * @params int $key
      * @return true, others
      */
-    public function delItem(string $item, $key)
+    public function delItem(int $key)
     {
-        if ($item == '') {
-            throw new Exception('刪除的item不得為空');
-        }
-
-        if ($item !== $this->items[$key]->name) {
-            throw new \OutOfBoundsException('找不到名為' . $item . '的待辦事項');
+        if (!array_key_exists($key, $this->items)) {
+            throw new \OutOfBoundsException('找不到 key 為' . $key . '的待辦事項');
         }
 
         unset($this->items[$key]);
