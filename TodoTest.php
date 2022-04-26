@@ -195,8 +195,10 @@ class TodoTest extends TestCase
     {
         $this->expectException(Exception::class);
 
+        $oriItem = new TodoItem(['']);
+
         $target = new TodoList();
-        $target->addItem('');
+        $target->addItem($oriItem);
     }
 
     /**

@@ -52,7 +52,7 @@ class TodoList
      */
     public function addItem(TodoItem $item, $priority = 0, $class = 0)
     {
-        if ($item === '') {
+        if ($item->name[0] === '') {
             throw new Exception('新增的item不得為空');
         }
 
