@@ -107,14 +107,14 @@ class TodoList
             throw new Exception('刪除的item不得為空');
         }
 
-        if (!in_array($item, $this->items)) {
+        if (!in_array($item, $this->items[0]->name)) {
             throw new \OutOfBoundsException('找不到名為' . $item . '的待辦事項');
         }
 
-        $key = array_search($item, $this->items);
+        $key = array_search($item, $this->items[0]->name);
 
-        unset($this->items[$key]);
-        $this->items = array_values($this->items);
+        unset($this->items[0]->name[$key]);
+        $this->items[0]->name = array_values($this->items[0]->name);
 
         unset($this->itemsStat[$key]);
         $this->itemsStat = array_values($this->itemsStat);
