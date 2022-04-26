@@ -41,7 +41,7 @@ class TodoList
     public function addItem(TodoItem $item)
     {
         if ($item->name === '') {
-            throw new Exception('新增的item不得為空');
+            throw new Exception('新增的 item 不得為空');
         }
 
         if ($item->priority > 3) {
@@ -54,7 +54,7 @@ class TodoList
 
         foreach ($this->items as $items) {
             if ($items->name === $item->name) {
-                throw new Exception('新增的item不得重複');
+                throw new Exception('新增的 item 不得重複');
             }
         }
 
@@ -71,7 +71,7 @@ class TodoList
     public function updateItem(string $newItem, int $key)
     {
         if ($newItem === '') {
-            throw new Exception('新item不得為空');
+            throw new Exception('新的 item 不得為空');
         }
 
         if (!array_key_exists($key, $this->items)) {
@@ -80,7 +80,7 @@ class TodoList
 
         foreach ($this->items as $items) {
             if ($items->name === $newItem) {
-                throw new Exception('更新的item不得重複');
+                throw new Exception('新的 item 不得重複');
             }
         }
 
@@ -121,11 +121,11 @@ class TodoList
     public function updateItemStat(int $key, int $status = 0)
     {
         if ($status > 1) {
-            throw new Exception('狀態錯誤');
+            throw new Exception('未定義的狀態');
         }
 
         if (!array_key_exists($key, $this->items)) {
-            throw new Exception('找不到key為' . $key . '的待辦事項');
+            throw new Exception('找不到 key 為' . $key . '的待辦事項');
         }
         $this->items[$key]->status = $status;
     }
@@ -138,11 +138,11 @@ class TodoList
     public function updateItemPriority(int $key, int $priority = 0)
     {
         if ($priority > 3) {
-            throw new Exception('優先權錯誤');
+            throw new Exception('未定義的優先權');
         }
 
         if (!array_key_exists($key, $this->items)) {
-            throw new Exception('找不到key為' . $key . '的待辦事項');
+            throw new Exception('找不到 key 為' . $key . '的待辦事項');
         }
 
         $this->items[$key]->priority = $priority;
@@ -156,11 +156,11 @@ class TodoList
     public function updateItemClass(int $key, int $class = 0)
     {
         if ($class > 3) {
-            throw new Exception('類別錯誤');
+            throw new Exception('不存在的類別');
         }
 
         if (!array_key_exists($key, $this->items)) {
-            throw new Exception('找不到key為' . $key . '的待辦事項');
+            throw new Exception('找不到 key 為' . $key . '的待辦事項');
         }
 
         $this->items[$key]->class = $class;

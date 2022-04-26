@@ -97,56 +97,7 @@ class TodoTest extends TestCase
 
     /**
      * @test
-     * @testdox 當項目清單有「看書」項目時，將「看書」更新為「」，應該要有「新item不得為空」的錯誤訊息
-     */
-    public function shouldShowUpdateEmptyItemWhenUpdateItem()
-    {
-        $this->expectException(Exception::class);
-
-        $oriItem = array();
-        $oriItem[] = new TodoItem('看書', 0, 1, 0);
-
-        $target = new TodoList();
-        $target->addItem($oriItem[0]);
-
-        $target->updateItem('', 0);
-    }
-
-    /**
-     * @test
-     * @testdox 當項目清單有「看書」項目時，將「不存在的 key 」更新為「看電視」，應該要有「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
-     */
-    public function shouldShowUpdateItemWhenUpdateErrorItem()
-    {
-        $this->expectException(Exception::class);
-
-        $oriItem = array();
-        $oriItem[] = new TodoItem('看書', 0, 1, 0);
-
-        $target = new TodoList();
-        $target->addItem($oriItem[0]);
-        $target->updateItem('看電視', 1);
-    }
-
-    /**
-     * @test
-     * @testdox 當項目清單有「看書」項目時，刪除「不存在的 key 」項目，應該會出現「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
-     */
-    public function shouldShowDelItemWhenDelErrorItem()
-    {
-        $this->expectException(Exception::class);
-
-        $oriItem = array();
-        $oriItem[] = new TodoItem('看書', 0, 1, 0);
-
-        $target = new TodoList();
-        $target->addItem($oriItem[0]);
-        $target->delItem(1);
-    }
-
-    /**
-     * @test
-     * @testdox 當項目清單有「買菜」項目時，新增一個清單項目「」，應該會出現「新增的item不得為空」的錯誤訊息
+     * @testdox 當項目清單有「買菜」項目時，新增一個清單項目「」，應該會出現「新增的 item 不得為空」的錯誤訊息
      */
     public function shouldShowAddEmptyItemWhenAddItem()
     {
@@ -197,6 +148,91 @@ class TodoTest extends TestCase
 
     /**
      * @test
+     * @testdox 當項目清單有「買菜」項目時，新增一個清單項目「買菜」，優先權「低」，類別「無」，應該會出現「新增的item不得重複」的錯誤訊息
+     */
+    public function shouldShowErrorItemWhenAddItemIntoList()
+    {
+        $this->expectException(Exception::class);
+
+        $expectedItem = array();
+        $expectedItem[] = new TodoItem('買菜', 0, 0, 2);
+        $expectedItem[] = new TodoItem('買菜', 0, 1, 0);
+
+        $target = new TodoList();
+        $target->addItem($expectedItem[0]);
+        $target->addItem($expectedItem[1]);
+    }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「看書」項目時，將「看書」更新為「」，應該要有「新的 item 不得為空」的錯誤訊息
+     */
+    public function shouldShowUpdateEmptyItemWhenUpdateItem()
+    {
+        $this->expectException(Exception::class);
+
+        $oriItem = array();
+        $oriItem[] = new TodoItem('看書', 0, 1, 0);
+
+        $target = new TodoList();
+        $target->addItem($oriItem[0]);
+
+        $target->updateItem('', 0);
+    }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「看書」項目時，將「不存在的 key 」更新為「看電視」，應該要有「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
+     */
+    public function shouldShowUpdateItemWhenUpdateErrorItem()
+    {
+        $this->expectException(Exception::class);
+
+        $oriItem = array();
+        $oriItem[] = new TodoItem('看書', 0, 1, 0);
+
+        $target = new TodoList();
+        $target->addItem($oriItem[0]);
+        $target->updateItem('看電視', 1);
+    }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「買菜」「看書」項目時，將「看書」更新為「買菜」，應該會出現「新的 item 不得重複」的錯誤訊息
+     */
+    public function shouldShowErrorItemWhenUpdateItem()
+    {
+        $this->expectException(Exception::class);
+
+        $oriItem = array();
+        $oriItem[] = new TodoItem('買菜', 0, 0, 2);
+        $oriItem[] = new TodoItem('看書', 0, 1, 0);
+
+        $target = new TodoList();
+        $target->addItem($oriItem[0]);
+        $target->addItem($oriItem[1]);
+
+        $target->updateItem('買菜', 1);
+    }
+
+    /**
+     * @test
+     * @testdox 當項目清單有「看書」項目時，刪除「不存在的 key 」項目，應該會出現「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
+     */
+    public function shouldShowDelItemWhenDelErrorItem()
+    {
+        $this->expectException(Exception::class);
+
+        $oriItem = array();
+        $oriItem[] = new TodoItem('看書', 0, 1, 0);
+
+        $target = new TodoList();
+        $target->addItem($oriItem[0]);
+        $target->delItem(1);
+    }
+
+    /**
+     * @test
      * @testdox 項目清單有「看電視」項目時，更新「看電視」狀態「已完成」，「看電視」狀態應該會是「已完成」
      */
     public function shouldShowItemStatWhenUpdateItemStat()
@@ -220,7 +256,7 @@ class TodoTest extends TestCase
 
     /**
      * @test
-     * @testdox 項目清單有「看電視」項目時，更新「看電視」狀態「未定義」，應該會出現「狀態錯誤」的錯誤訊息
+     * @testdox 項目清單有「看電視」項目時，更新「看電視」狀態「未定義」，應該會出現「未定義的狀態」的錯誤訊息
      */
     public function shouldShowUpdateErrorStatusItemWhenUpdateStatus()
     {
@@ -236,7 +272,7 @@ class TodoTest extends TestCase
 
     /**
      * @test
-     * @testdox 項目清單有「看電視」項目時，更新「不存在的 key 」狀態「已完成」，應該會出現「找不到 key 為不存在的 key 的待辦事項」的錯誤訊息
+     * @testdox 項目清單有「看電視」項目時，更新「不存在的 key 」狀態「已完成」，應該會出現「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
      */
     public function shouldShowUpdateErrorKeyItemWhenUpdateStatus()
     {
@@ -275,7 +311,7 @@ class TodoTest extends TestCase
 
     /**
      * @test
-     * @testdox 項目清單有「看電視」項目時，更新「看電視」優先權「未定義」，應該會出現「優先權錯誤」的錯誤訊息
+     * @testdox 項目清單有「看電視」項目時，更新「看電視」優先權「未定義」，應該會出現「未定義的優先權」的錯誤訊息
      */
     public function shouldShowUpdateErrorPriorityItemWhenUpdatePriority()
     {
@@ -291,7 +327,7 @@ class TodoTest extends TestCase
 
     /**
      * @test
-     * @testdox 項目清單有「看電視」項目時，更新「不存在的 key 」優先權「高」，應該會出現「找不到 key 為不存在的 key 的待辦事項」的錯誤訊息
+     * @testdox 項目清單有「看電視」項目時，更新「不存在的 key 」優先權「高」，應該會出現「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
      */
     public function shouldShowUpdateErrorKeyItemWhenUpdatePriority()
     {
@@ -332,7 +368,7 @@ class TodoTest extends TestCase
 
     /**
      * @test
-     * @testdox 項目清單有「看電視」項目時，更新「看電視」類別「未定義」，應該會出現「類別錯誤」的錯誤訊息
+     * @testdox 項目清單有「看電視」項目時，更新「看電視」類別「不存在」，應該會出現「不存在的類別」的錯誤訊息
      */
     public function shouldShowUpdateErrorClassItemWhenUpdateClass()
     {
@@ -348,7 +384,7 @@ class TodoTest extends TestCase
 
     /**
      * @test
-     * @testdox 項目清單有「看電視」項目時，更新「不存在的 key 」類別「家庭」，應該會出現「找不到 key 為不存在的 key 的待辦事項」的錯誤訊息
+     * @testdox 項目清單有「看電視」項目時，更新「不存在的 key 」類別「家庭」，應該會出現「找不到 key 為 不存在的 key 的待辦事項」的錯誤訊息
      */
     public function shouldShowUpdateErrorKeyItemWhenUpdateClass()
     {
@@ -360,42 +396,5 @@ class TodoTest extends TestCase
         $target = new TodoList();
         $target->addItem($oriItem[0]);
         $target->updateItemClass(1, 3);
-    }
-
-    /**
-     * @test
-     * @testdox 當項目清單有「買菜」項目時，新增一個清單項目「買菜」，優先權「低」，類別「無」，應該會出現「新增的item不得重複」的錯誤訊息
-     */
-    public function shouldShowErrorItemWhenAddItemIntoList()
-    {
-        $this->expectException(Exception::class);
-
-        $expectedItem = array();
-        $expectedItem[] = new TodoItem('買菜', 0, 0, 2);
-        $expectedItem[] = new TodoItem('買菜', 0, 1, 0);
-
-        $target = new TodoList();
-        $target->addItem($expectedItem[0]);
-        $target->addItem($expectedItem[1]);
-    }
-
-    /**
-     * @test
-     * @testdox 當項目清單有「買菜」「看書」項目時，將「看書」更新為「買菜」，應該會出現「更新的item不得重複」的錯誤訊息
-     */
-    public function shouldShowErrorItemWhenUpdateItem()
-    {
-        $this->expectException(Exception::class);
-
-        $oriItem = array();
-        $oriItem[] = new TodoItem('買菜', 0, 0, 2);
-        $oriItem[] = new TodoItem('看書', 0, 1, 0);
-
-        $target = new TodoList();
-        $target->addItem($oriItem[0]);
-        $target->addItem($oriItem[1]);
-        
-        $target->updateItem('買菜', 1);
-
     }
 }
