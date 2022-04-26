@@ -114,16 +114,6 @@ class TodoList
     }
 
     /**
-     * @param
-     * return
-     */
-    public function getItem(int $key)
-    {
-
-        return $this->items[$key];
-    }
-
-    /**
      * @params int $key
      * @params int $status
      * @return true, others

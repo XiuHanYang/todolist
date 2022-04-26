@@ -394,8 +394,7 @@ class TodoTest extends TestCase
         $target = new TodoList();
         $target->addItem($oriItem[0]);
         $target->addItem($oriItem[1]);
-
-        $updateItem = $target->getItem(1);
+        
         $target->updateItem('買菜', 1);
 
     }
